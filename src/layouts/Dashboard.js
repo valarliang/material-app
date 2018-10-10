@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
-import PerfectScrollbar from "perfect-scrollbar";
-import "perfect-scrollbar/css/perfect-scrollbar.css";
-import Sidebar from '../components/Sidebar';
+import { Typography, TextField, Paper, Button } from '@material-ui/core';
 
 class Dashboard extends Component {
-  constructor(){
-    super();
-    this.state = {};
+  state = {
+    title: '',
   }
-  render(){
+
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  render() {
+    const { title } = this.state;
     return (
-      <div>
-        <Sidebar />
-      </div>
+      <Paper>
+        <Typography variant="h2" align="center" color="inherit" gutterBottom>
+          Exercises
+        </Typography>
+        <form>
+          <TextField
+            name="title"
+            label="Exercise"
+            value={title}
+            onChange={this.handleChange}
+            margin="normal"
+          />
+          <Button type="submit" color="primary" variant="raised">Create</Button>
+        </form>
+      </Paper>
     );
   }
 }
 
 export default Dashboard;
-
